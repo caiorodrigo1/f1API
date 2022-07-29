@@ -1,12 +1,4 @@
-import { Circuit } from "../model/Circuits";
-
-interface ICreateCircuitDTO {
-  name: string;
-  laps: number;
-  location: string;
-  country: string;
-  mapsUrl: string;
-}
+import { Circuit } from "../model/Circuit";
 
 class CircuitsRepository {
   private circuits: Circuit[];

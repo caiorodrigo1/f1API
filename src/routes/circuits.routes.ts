@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { CircuitsRepository } from "../repositories/CircuitsRepositories";
+import { CreateCurcuitService } from "../services/CreateCircuitService";
 
 const circuitsRoutes = Router();
 const circuitsRepository = new CircuitsRepository();
@@ -8,13 +9,9 @@ const circuitsRepository = new CircuitsRepository();
 circuitsRoutes.post("/", (request, response) => {
   const { name, laps, location, country, mapsUrl } = request.body;
 
-  const circuitAlreadyExists = circuitsRepository.findByName(name);
+  const createCircuitService = new CreateCurcuitService(circuitsRepository);
 
-  if (circuitAlreadyExists) {
-    return response.status(400).json({ error: "Circuit already exists" });
-  }
-
-  circuitsRepository.create({ name, laps, location, country, mapsUrl });
+  createCircuitService.execute({ name, laps, location, country, mapsUrl });
 
   return response.status(201).send();
 });
