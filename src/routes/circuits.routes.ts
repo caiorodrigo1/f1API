@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { CircuitsRepository } from "../repositories/CircuitsRepositories";
-import { CreateCurcuitService } from "../services/CreateCircuitService";
+import { CircuitsRepository } from "../modules/Circuits/repositories/CircuitsRepositories";
+import { CreateCurcuitService } from "../modules/Circuits/services/CreateCircuitService";
 
 const circuitsRoutes = Router();
 const circuitsRepository = new CircuitsRepository();

@@ -1,6 +1,7 @@
 import { Circuit } from "../model/Circuit";
+import { ICircuitsRepository, ICreateCircuitDTO } from "./ICircuitsRepository";
 
-class CircuitsRepository {
+class CircuitsRepository implements ICircuitsRepository {
   private circuits: Circuit[];
 
   constructor() {

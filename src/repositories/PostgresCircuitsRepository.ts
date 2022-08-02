@@ -1,5 +1,8 @@
-import { Circuit } from "../model/Circuit";
-import { ICircuitsRepository, ICreateCircuitDTO } from "./ICircuitsRepository";
+import { Circuit } from "../modules/Circuits/model/Circuit";
+import {
+  ICircuitsRepository,
+  ICreateCircuitDTO,
+} from "../modules/Circuits/repositories/ICircuitsRepository";
 
 class PostgresCircuitsRepository implements ICircuitsRepository {
   findByName(name: string): Circuit {
