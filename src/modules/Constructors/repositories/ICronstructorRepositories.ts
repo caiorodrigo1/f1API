@@ -21,6 +21,7 @@ interface IConstructorsRepository {
     nationality,
   }: ICreateConstructorDTO): void;
   findByName(name: string): Constructor;
+  list(): Constructor[];
 }
 
 export { IConstructorsRepository, ICreateConstructorDTO };

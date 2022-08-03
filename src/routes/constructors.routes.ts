@@ -1,19 +1,16 @@
 import { Router } from "express";
 
-import { ConstructorsRepository } from "../modules/Constructors/repositories/implementations/ConstructorsRepository";
 import { createConstructorController } from "../modules/Constructors/useCases/createConstructor";
+import { listConstructorsController } from "../modules/Constructors/useCases/listConstructors";
 
 const constructorsRoutes = Router();
-const costructorsRepository = new ConstructorsRepository();
 
 constructorsRoutes.post("/", (request, response) => {
   return createConstructorController.handle(request, response);
 });
 
 constructorsRoutes.get("/", (request, response) => {
-  const constructors = costructorsRepository.list();
-
-  return response.status(200).json(constructors);
+  return listConstructorsController.handle(request, response);
 });
 
 export { constructorsRoutes };

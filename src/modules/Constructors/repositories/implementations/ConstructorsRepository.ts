@@ -7,8 +7,17 @@ import {
 class ConstructorsRepository implements IConstructorsRepository {
   private constructors: Constructor[];
 
-  constructor() {
+  private static INSTANCE: ConstructorsRepository;
+
+  private constructor() {
     this.constructors = [];
+  }
+
+  public static getInstance(): ConstructorsRepository {
+    if (!ConstructorsRepository.INSTANCE) {
+      ConstructorsRepository.INSTANCE = new ConstructorsRepository();
+    }
+    return ConstructorsRepository.INSTANCE;
   }
 
   create({

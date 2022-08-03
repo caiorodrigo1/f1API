@@ -2,7 +2,7 @@ import { ConstructorsRepository } from "../../repositories/implementations/Const
 import { CreateConstructorController } from "./CreateConstructorController";
 import { CreateConstructorUseCase } from "./CreateConstructorUseCase";
 
-const constructorsRepository = new ConstructorsRepository();
+const constructorsRepository = ConstructorsRepository.getInstance();
 
 const createConstructorUseCase = new CreateConstructorUseCase(
   constructorsRepository
