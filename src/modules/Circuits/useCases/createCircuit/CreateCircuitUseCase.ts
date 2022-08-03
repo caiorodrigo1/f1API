@@ -1,4 +1,4 @@
-import { ICircuitsRepository } from "../repositories/ICircuitsRepository";
+import { ICircuitsRepository } from "../../repositories/ICircuitsRepository";
 
 interface IRequest {
   name: string;
@@ -8,7 +8,7 @@ interface IRequest {
   mapsUrl: string;
 }
 
-class CreateCurcuitService {
+class CreateCircuitUseCase {
   constructor(private circuitsRepository: ICircuitsRepository) {}
 
   execute({ name, laps, location, country, mapsUrl }: IRequest): void {
@@ -22,4 +22,4 @@ class CreateCurcuitService {
   }
 }
 
-export { CreateCurcuitService };
+export { CreateCircuitUseCase };

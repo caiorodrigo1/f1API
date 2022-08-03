@@ -1,37 +1,13 @@
-import { request, response, Router } from "express";
+import { Router } from "express";
 
-import { ConstructorsRepository } from "../modules/Constructor/repositories/ConstructorsRepository";
-import { CreateConstructorService } from "../modules/Constructor/services/CreateConstructorService";
+import { ConstructorsRepository } from "../modules/Constructors/repositories/implementations/ConstructorsRepository";
+import { createConstructorController } from "../modules/Constructors/useCases/createConstructor";
 
 const constructorsRoutes = Router();
 const costructorsRepository = new ConstructorsRepository();
 
 constructorsRoutes.post("/", (request, response) => {
-  const {
-    name,
-    principal,
-    drivers,
-    champ_points,
-    box_time_record,
-    one_two_wins,
-    nationality,
-  } = request.body;
-
-  const createConstructorService = new CreateConstructorService(
-    costructorsRepository
-  );
-
-  createConstructorService.execute({
-    name,
-    principal,
-    drivers,
-    champ_points,
-    box_time_record,
-    one_two_wins,
-    nationality,
-  });
-
-  return response.status(201).send();
+  return createConstructorController.handle(request, response);
 });
 
 constructorsRoutes.get("/", (request, response) => {

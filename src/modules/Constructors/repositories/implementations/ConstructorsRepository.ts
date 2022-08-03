@@ -1,8 +1,8 @@
-import { Constructor } from "../model/Constructor";
+import { Constructor } from "../../model/Constructor";
 import {
   IConstructorsRepository,
   ICreateConstructorDTO,
-} from "./ICronstructorRepositories";
+} from "../ICronstructorRepositories";
 
 class ConstructorsRepository implements IConstructorsRepository {
   private constructors: Constructor[];

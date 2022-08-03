@@ -1,4 +1,4 @@
-import { IConstructorsRepository } from "../repositories/ICronstructorRepositories";
+import { IConstructorsRepository } from "../../repositories/ICronstructorRepositories";
 
 interface IRequest {
   name: string;
@@ -10,7 +10,7 @@ interface IRequest {
   nationality: string;
 }
 
-class CreateConstructorService {
+class CreateConstructorUseCase {
   constructor(private constructorsRepository: IConstructorsRepository) {}
 
   execute({
@@ -41,4 +41,4 @@ class CreateConstructorService {
   }
 }
 
-export { CreateConstructorService };
+export { CreateConstructorUseCase };

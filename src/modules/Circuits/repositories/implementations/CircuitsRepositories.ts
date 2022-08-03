@@ -1,11 +1,21 @@
-import { Circuit } from "../model/Circuit";
-import { ICircuitsRepository, ICreateCircuitDTO } from "./ICircuitsRepository";
+import { Circuit } from "../../model/Circuit";
+import { ICircuitsRepository, ICreateCircuitDTO } from "../ICircuitsRepository";
 
 class CircuitsRepository implements ICircuitsRepository {
   private circuits: Circuit[];
 
-  constructor() {
+  // eslint-disable-next-line no-use-before-define
+  private static INSTANCE: CircuitsRepository;
+
+  private constructor() {
     this.circuits = [];
+  }
+
+  public static getInstance(): CircuitsRepository {
+    if (!CircuitsRepository.INSTANCE) {
+      CircuitsRepository.INSTANCE = new CircuitsRepository();
+    }
+    return CircuitsRepository.INSTANCE;
   }
 
   create({ name, laps, location, country, mapsUrl }: ICreateCircuitDTO): void {
