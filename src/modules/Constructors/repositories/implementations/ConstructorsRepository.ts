@@ -7,6 +7,7 @@ import {
 class ConstructorsRepository implements IConstructorsRepository {
   private constructors: Constructor[];
 
+  // eslint-disable-next-line no-use-before-define
   private static INSTANCE: ConstructorsRepository;
 
   private constructor() {
