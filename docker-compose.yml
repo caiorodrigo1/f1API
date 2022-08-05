@@ -2,8 +2,8 @@ version: "3.9"
 services:
   app:
     build: .
-    prots:
+    container_name: f1-api
+    ports:
       - 3090:3090
     volumes:
       - .:/usr/app
-      
