@@ -1,11 +1,14 @@
 import express from "express";
 
+import { AppDataSource } from "./database/data-source";
 import { router } from "./routes";
 
-const app = express();
+AppDataSource.initialize().then(() => {
+  const app = express();
 
-app.use(express.json());
+  app.use(express.json());
 
-app.use(router);
+  app.use(router);
 
-app.listen(3090, () => console.log("Server up at port 3090"));
+  app.listen(3090, () => console.log("Server up at port 3090"));
+});

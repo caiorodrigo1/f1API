@@ -1,13 +1,24 @@
-import { Entity } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity()
 class Circuit {
-  id?: string;
+  @PrimaryGeneratedColumn()
+  id: string;
+
+  @Column()
   name: string;
+
+  @Column()
   laps: number;
+
+  @Column()
   location: string;
+
+  @Column()
   country: string;
+
+  @Column()
   mapsUrl: string;
 
   constructor() {
