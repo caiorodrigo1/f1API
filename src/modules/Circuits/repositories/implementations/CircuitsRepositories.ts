@@ -1,14 +1,16 @@
-import { Circuit } from "../../model/Circuit";
+import { Repository } from "typeorm";
+
+import { AppDataSource } from "../../../../database/data-source";
+import { Circuit } from "../../entities/Circuit";
 import { ICircuitsRepository, ICreateCircuitDTO } from "../ICircuitsRepository";
 
 class CircuitsRepository implements ICircuitsRepository {
-  private circuits: Circuit[];
+  private repository: Repository<Circuit>;
 
-  // eslint-disable-next-line no-use-before-define
   private static INSTANCE: CircuitsRepository;
 
   private constructor() {
-    this.circuits = [];
+    this.repository = AppDataSource.getRepository(Circuit);
   }
 
   public static getInstance(): CircuitsRepository {
@@ -18,10 +20,14 @@ class CircuitsRepository implements ICircuitsRepository {
     return CircuitsRepository.INSTANCE;
   }
 
-  create({ name, laps, location, country, mapsUrl }: ICreateCircuitDTO): void {
-    const circuit = new Circuit();
-
-    Object.assign(circuit, {
+  async create({
+    name,
+    laps,
+    location,
+    country,
+    mapsUrl,
+  }: ICreateCircuitDTO): Promise<void> {
+    const circuit = this.repository.create({
       name,
       laps,
       location,
@@ -29,15 +35,16 @@ class CircuitsRepository implements ICircuitsRepository {
       mapsUrl,
     });
 
-    this.circuits.push(circuit);
+    await this.repository.save(circuit);
   }
 
-  list(): Circuit[] {
-    return this.circuits;
+  async list(): Promise<Circuit[]> {
+    const circuits = await this.repository.find();
+    return circuits;
   }
 
-  findByName(name: string): Circuit {
-    const circuit = this.circuits.find((circuit) => circuit.name === name);
+  async findByName(name: string): Promise<Circuit> {
+    const circuit = await this.repository.findOneBy({ name });
 
     return circuit;
   }

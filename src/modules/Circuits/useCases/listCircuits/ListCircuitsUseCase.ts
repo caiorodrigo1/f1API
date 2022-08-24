@@ -1,4 +1,4 @@
-import { Circuit } from "../../model/Circuit";
+import { Circuit } from "../../entities/Circuit";
 import { ICircuitsRepository } from "../../repositories/ICircuitsRepository";
 
 class ListCircuitsUseCase {

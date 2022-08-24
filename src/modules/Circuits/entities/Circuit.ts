@@ -1,10 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-@Entity()
+@Entity("test")
 class Circuit {
   @PrimaryGeneratedColumn()
-  id: string;
+  id?: string;
 
   @Column()
   name: string;

@@ -1,4 +1,4 @@
-import { Circuit } from "../model/Circuit";
+import { Circuit } from "../entities/Circuit";
 
 interface ICreateCircuitDTO {
   name: string;
@@ -9,9 +9,15 @@ interface ICreateCircuitDTO {
 }
 
 interface ICircuitsRepository {
-  findByName(name: string): Circuit;
-  list(): Circuit[];
-  create({ name, laps, location, country, mapsUrl }: ICreateCircuitDTO): void;
+  findByName(name: string): Promise<Circuit>;
+  list(): Promise<Circuit[]>;
+  create({
+    name,
+    laps,
+    location,
+    country,
+    mapsUrl,
+  }: ICreateCircuitDTO): Promise<void>;
 }
 
 export { ICircuitsRepository, ICreateCircuitDTO };
